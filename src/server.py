@@ -23,7 +23,7 @@ def modeloFile():
     path=os.path.join(os.getcwd(),'files',filename)
     f.save(path)
     file = open(path, "r")
-    
+
     for x in file:
         info=x.split()
     print(info)
@@ -42,12 +42,12 @@ def modeloFile():
 #Envio de datos a través de Forms
 @servidorWeb.route('/modeloForm', methods=['POST'])
 def modeloForm():
-    #Procesar datos de entrada 
+    #Procesar datos de entrada
     contenido = request.form
-    
+
     datosEntrada = np.array([
             contenido['cryoSleep'],
-            contenido['year'],
+            contenido['age'],
             contenido['vip'],
             contenido['planet'],
             contenido['destination'],
@@ -61,12 +61,12 @@ def modeloForm():
 #Envio de datos a través de JSON
 @servidorWeb.route('/modelo', methods=['POST'])
 def modelo():
-    #Procesar datos de entrada 
+    #Procesar datos de entrada
     contenido = request.json
     print(contenido)
     datosEntrada = np.array([
             contenido['cryoSleep'],
-            contenido['year'],
+            contenido['age'],
             contenido['vip'],
             contenido['planet'],
             contenido['destination'],
