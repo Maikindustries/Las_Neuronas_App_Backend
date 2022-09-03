@@ -45,12 +45,23 @@ def modeloForm():
     #Procesar datos de entrada
     contenido = request.get_json()
     print(contenido)
+    origin_data = [0,0,0]
+    id_origin = int(contenido["origin"]) - 1
+    origin_data[id_origin] = 1
+    dest_data = [0,0,0]
+    id_dest = int(contenido["destination"]) - 1
+    origin_data[id_dest] = 1
+
     datosEntrada = np.array([
             contenido['cryoSleep'],
             contenido['age'],
             contenido['vip'],
-            contenido['origin'],
-            contenido['destination'],
+            origin_data[0],
+            origin_data[1],
+            origin_data[2],
+            dest_data[1],
+            dest_data[1],
+            dest_data[2],
             ])
     print(datosEntrada.reshape(1,-1))
     return {"ocy":1}
