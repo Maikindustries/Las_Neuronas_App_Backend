@@ -30,7 +30,9 @@ def modeloFile():
     datosEntrada = np.array([
             float(info[0]),
             float(info[1]),
-            float(info[2])
+            float(info[2]),
+            float(info[3]),
+            float(info[4])
         ])
     #Utilizar el modelo
     resultado=dt.predict(datosEntrada.reshape(1,-1))
@@ -44,10 +46,12 @@ def modeloForm():
     contenido = request.form
     
     datosEntrada = np.array([
-            contenido['pH'],
-            contenido['sulphates'],
-            contenido['alcohol']
-        ])
+            contenido['cryoSleep'],
+            contenido['year'],
+            contenido['vip'],
+            contenido['planet'],
+            contenido['destination'],
+            ])
     #Utilizar el modelo
     resultado=dt.predict(datosEntrada.reshape(1,-1))
     #Regresar la salida del modelo
@@ -61,10 +65,12 @@ def modelo():
     contenido = request.json
     print(contenido)
     datosEntrada = np.array([
-            contenido['pH'],
-            contenido['sulphates'],
-            contenido['alcohol']
-        ])
+            contenido['cryoSleep'],
+            contenido['year'],
+            contenido['vip'],
+            contenido['planet'],
+            contenido['destination'],
+            ])
     #Utilizar el modelo
     resultado=dt.predict(datosEntrada.reshape(1,-1))
     #Regresar la salida del modelo
