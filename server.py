@@ -43,7 +43,7 @@ def modeloFile():
 @servidorWeb.route('/modeloForm', methods=['POST'])
 def modeloForm():
     #Procesar datos de entrada
-    contenido = request.form
+    contenido = request.get_json()
     print(contenido)
     datosEntrada = np.array([
             contenido['cryoSleep'],
