@@ -44,13 +44,14 @@ def modeloFile():
 def modeloForm():
     #Procesar datos de entrada
     contenido = request.get_json()
-    print(contenido)
-    origin_data = [0,0,0]
-    id_origin = int(contenido["origin"]) - 1
+    
+    origin_data, dest_data = [0,0,0], [0,0,0]
+    
+    id_origin = int(contenido["origin"])
     origin_data[id_origin] = 1
-    dest_data = [0,0,0]
-    id_dest = int(contenido["destination"]) - 1
-    origin_data[id_dest] = 1
+     
+    id_dest = int(contenido["destination"]) 
+    dest_data[id_dest] = 1
 
     datosEntrada = np.array([
             contenido['cryoSleep'],
@@ -63,11 +64,11 @@ def modeloForm():
             dest_data[1],
             dest_data[2],
             ])
-    print(datosEntrada.reshape(1,-1))
-    #return {"ocy":1}
+    
     #Utilizar el modelo
     resultado=dt.predict(datosEntrada.reshape(1,-1))
     #Regresar la salida del modelo
+    print({"Resultado":str(resultado[0])})
     return jsonify({"Resultado":str(resultado[0])})
 
 
