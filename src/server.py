@@ -74,7 +74,7 @@ def modelo():
     #Utilizar el modelo
     resultado=dt.predict(datosEntrada.reshape(1,-1))
     #Regresar la salida del modelo
-    return jsonify({"Resultado":str(resultado[0])})
+    return jsonify({"Transportado":str(resultado[0])})
 
 if __name__ == '__main__':
     servidorWeb.run(debug=False,host='0.0.0.0',port='8080')
