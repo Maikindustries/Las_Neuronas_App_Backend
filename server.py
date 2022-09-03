@@ -64,7 +64,7 @@ def modeloForm():
             dest_data[2],
             ])
     print(datosEntrada.reshape(1,-1))
-    return {"ocy":1}
+    #return {"ocy":1}
     #Utilizar el modelo
     resultado=dt.predict(datosEntrada.reshape(1,-1))
     #Regresar la salida del modelo
