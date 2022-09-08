@@ -12,7 +12,7 @@ def write_to_dynamo(contenido, resultado):
     data['vip'] = contenido['vip']
     data['destination'] = contenido['destination']
     data['transported'] = resultado
-    x = table.put_item(Item=mydict)
+    x = table.put_item(Item=data)
     #print(x)
 
 def print_db_items():

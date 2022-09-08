@@ -3,6 +3,7 @@ import numpy as np
 from joblib import load
 from werkzeug.utils import secure_filename
 import os
+import dynamo
 
 #Cargar el modelo
 dt = load('modelo.joblib')
@@ -44,13 +45,13 @@ def modeloFile():
 def modeloForm():
     #Procesar datos de entrada
     contenido = request.get_json()
-    
+
     origin_data, dest_data = [0,0,0], [0,0,0]
-    
+
     id_origin = int(contenido["origin"])
     origin_data[id_origin] = 1
-     
-    id_dest = int(contenido["destination"]) 
+
+    id_dest = int(contenido["destination"])
     dest_data[id_dest] = 1
 
     datosEntrada = np.array([
@@ -64,9 +65,11 @@ def modeloForm():
             dest_data[1],
             dest_data[2],
             ])
-    
+
     #Utilizar el modelo
     resultado=dt.predict(datosEntrada.reshape(1,-1))
+    #Guardar viaje en base de datosEntrada
+    dynamo.write_to_dynamo(contenido, resultado[0])
     #Regresar la salida del modelo
     print({"Resultado":str(resultado[0])})
     return jsonify({"Resultado":str(resultado[0])})
