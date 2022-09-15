@@ -46,8 +46,8 @@ def serve_avg_age(items):
     for item in items:
         if item['transported'] == '1':
             count += 1
-            sum += item['age']
-    return {'avg': sum / count, 'count': count}
+            sum += int(item['age'])
+    return {'avg': float(sum / count), 'count': count}
  
 def serve_stats():
     items = get_db_items()
