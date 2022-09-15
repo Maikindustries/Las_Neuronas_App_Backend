@@ -21,8 +21,8 @@ def write_to_dynamo(contenido, resultado):
 
 def get_db_items():
     items = table.scan()
-    print(items)
-    return items[0]['Items']
+    #print(items)
+    return items['Items']
 
 def serve_planet_stats():
     planets = {}
