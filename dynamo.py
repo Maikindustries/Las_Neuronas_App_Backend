@@ -25,11 +25,11 @@ def get_db_items():
     return items['Items']
 
 def serve_planet_stats():
-    planets = {}
+    planets = [0, 0, 0]
     items = get_db_items()
     for item in items:
         if item['transported'] == '1':
-            planets[item['origin']] += 1
+            planets[int(item['origin'])] += 1
     return planets
     
 def serve_stats():
