@@ -103,5 +103,9 @@ def modelo():
     #Regresar la salida del modelo
     return jsonify({"Transportado":str(resultado[0])})
 
+@servidorWeb.route("/stats",methods=['GET'])
+def stats():
+    return jsonify(dynamo.serve_stats())
+
 if __name__ == '__main__':
     servidorWeb.run(debug=False,host='0.0.0.0',port='8080')
