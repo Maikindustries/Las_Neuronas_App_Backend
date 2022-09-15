@@ -1,3 +1,3 @@
 import dynamo
 
-dynamo.print_db_items()
+print(dynamo.get_db_items())
