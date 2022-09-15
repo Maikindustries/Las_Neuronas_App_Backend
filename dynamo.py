@@ -29,7 +29,7 @@ def serve_planet_stats(items):
     for item in items:
         if item['transported'] == '1':
             planets[int(item['origin'])] += 1
-    result = {'Earth': planets[0], "Mars": planets[1], "Europe": planets[2]}
+    result = {'Earth': planets[0], "Mars": planets[1], "Europa": planets[2]}
     return result
 
 def serve_destination_stats(items):
