@@ -18,3 +18,24 @@ def write_to_dynamo(contenido, resultado):
 def print_db_items():
     items = table.scan()
     print(items)
+
+def serve_surv_stats():
+    response = table.query(
+        KeyConditionExpression=Key('transported').eq(1)
+        )
+    #print(response['Items'])
+    return response['Items']
+
+def serve_death_stats():
+    response = table.query(
+        KeyConditionExpression=Key('transported').eq(0)
+        )
+    #print(response['Items'])
+    return response['Items']
+
+def serve_planet_stats():
+    data = serve_surv_stats()
+    print(data)
+
+def serve_stats():
+    serve_planet_stats()
