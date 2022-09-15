@@ -30,7 +30,17 @@ def serve_planet_stats():
     for item in items:
         if item['transported'] == '1':
             planets[int(item['origin'])] += 1
-    return planets
+    result = {'Earth': planets[0], "Mars": planets[1], "Europe": planets[2]}
+    return result
+
+def serve_destination_stats():
+    destinations = [0, 0, 0]
+    items = get_db_items()
+    for item in items:
+        if item['transported'] == '1':
+            destinations[int(item['destination'])] += 1
+    result = {'55 Cancri e': destinations[0], "TRAPPIST-1e": destinations[1], "PSO J318.5-22": destinations[2]}
+    return result
     
 def serve_stats():
     serve_planet_stats()
