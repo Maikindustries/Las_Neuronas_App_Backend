@@ -1,4 +1,5 @@
 import boto3
+from boto3.dynamodb.conditions import Key
 import uuid
 
 dynamodb = boto3.resource('dynamodb')
