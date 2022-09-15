@@ -13,32 +13,24 @@ def write_to_dynamo(contenido, resultado):
     data['cryoSleep'] = contenido['cryoSleep']
     data['age'] = contenido['age']
     data['vip'] = contenido['vip']
+    data['origin'] = contenido['origin']
     data['destination'] = contenido['destination']
     data['transported'] = string(resultado)
     x = table.put_item(Item=data)
     #print(x)
 
-def print_db_items():
+def get_db_items():
     items = table.scan()
     print(items)
-
-def serve_surv_stats():
-    response = table.query(
-        KeyConditionExpression=Key('transported').eq(1)
-        )
-    #print(response['Items'])
-    return response['Items']
-
-def serve_death_stats():
-    response = table.query(
-        KeyConditionExpression=Key('transported').eq(0)
-        )
-    #print(response['Items'])
-    return response['Items']
+    return items
 
 def serve_planet_stats():
-    data = serve_surv_stats()
-    print(data)
-
+    planets = {}
+    items = get_db_items()
+    for item in items:
+        if item.transported:
+            planets[item['origin']] += 1
+    return planets
+    
 def serve_stats():
     serve_planet_stats()
