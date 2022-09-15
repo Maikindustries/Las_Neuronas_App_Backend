@@ -14,7 +14,7 @@ def write_to_dynamo(contenido, resultado):
     data['age'] = contenido['age']
     data['vip'] = contenido['vip']
     data['destination'] = contenido['destination']
-    data['transported'] = int(resultado)
+    data['transported'] = string(resultado)
     x = table.put_item(Item=data)
     #print(x)
 
