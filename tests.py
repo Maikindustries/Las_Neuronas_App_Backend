@@ -1,3 +1,3 @@
 import dynamo
 
-dynamo.serve_planet_stats()
+print(dynamo.serve_planet_stats())

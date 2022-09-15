@@ -29,7 +29,6 @@ def serve_planet_stats():
     items = get_db_items()
     for item in items:
         if item['transported'] == '1':
-            print(item['origin'])
             planets[int(item['origin'])] += 1
     return planets
     
